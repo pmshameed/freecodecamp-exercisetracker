@@ -18,7 +18,7 @@
   <body>
     <div class="container">
       <h1>Exercise tracker</h1>
-      <form action="api/users" method="post">
+      <form action="/api/users" method="post">
         <h2>Create a New User</h2>
         <p><code>POST /api/users</code></p>
         <input id="uname" type="text" name="username" placeholder="username" />
@@ -61,10 +61,16 @@
     <script>
       const exerciseForm = document.getElementById("exercise-form");
 
-      exerciseForm.addEventListener("submit", () => {
+      exerciseForm.addEventListener("submit", (e) => {
+        // Prevent default submission action
+        e.preventDefault();
+
         const userId = document.getElementById("uid").value;
+
+        // Dynamically set the correct action URL
         exerciseForm.action = `/api/users/${userId}/exercises`;
 
+        // Perform the submission cleanly
         exerciseForm.submit();
       });
     </script>
